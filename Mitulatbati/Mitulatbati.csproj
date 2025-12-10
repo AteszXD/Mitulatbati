@@ -52,6 +52,7 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="style.css" />
     <Content Include="Verseny.html" />
     <Content Include="verseny.sql" />
   </ItemGroup>
