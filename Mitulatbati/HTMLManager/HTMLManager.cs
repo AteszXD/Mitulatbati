@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Mitulatbati.SQL
+namespace Mitulatbati.HTMLManager
 {
-    class SQL
+    class HTML
     {
 
     }
