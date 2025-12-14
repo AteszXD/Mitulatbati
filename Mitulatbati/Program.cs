@@ -1,10 +1,11 @@
-﻿using System;
+﻿using Mitulatbati.HTML;
+using Mitulatbati.SQL;
+using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Mitulatbati.SQL;
-using Mitulatbati.HTML;
 
 namespace Mitulatbati
 {
@@ -12,6 +13,7 @@ namespace Mitulatbati
     {
         static void Main(string[] _)
         {
+            Directory.SetCurrentDirectory(Path.GetFullPath(Path.Combine(AppDomain.CurrentDomain.BaseDirectory,@"..\..\")));
             Console.Title = "Szélesbálási Fedettpályás Kalaplengető Verseny";
 
             new SQLManager().InsertIntoDatabase();

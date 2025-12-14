@@ -7,7 +7,7 @@
     <ProjectGuid>{FBE33C5A-93E7-49EE-B4CE-0774B9E23FB3}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <RootNamespace>Mitulatbati</RootNamespace>
-    <AssemblyName>Mitulatbati</AssemblyName>
+    <AssemblyName>0</AssemblyName>
     <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
