@@ -21,7 +21,7 @@ namespace Mitulatbati.HTML
             {
                 htmlStatic += $"\r\n                <tr>\r\n                    <td>{i + 1}</td>\r\n                    <td>{competitors[i].Name}</td>\r\n                    <td>{Math.Ceiling(10 - competitors[i].Elso_leng)}</td>\r\n                    <td>{Math.Ceiling(10 - competitors[i].Masodik_leng)}</td>\r\n                    <td>{Math.Ceiling(10 - competitors[i].Harmadik_leng)}</td>\r\n                    <td>{Math.Ceiling(10 - competitors[i].Legjobb_leng)}</td>\r\n                </tr>";
             }
-            htmlStatic += "\r\n            </tbody>\r\n        </table>\r\n\r\n    </div>\r\n\r\n</body>\r\n</html>";
+            htmlStatic += "\r\n            </tbody>\r\n        </table>\r\n\r\n    </div>\r\n\t\r\n\t<script src=\"gorgeto.js\"></script>\r\n\t<script>\r\n\t  startAutoScroll();\r\n\t</script>\r\n\t\r\n</body>\r\n</html>";
         
             File.WriteAllText("verseny.html", htmlStatic);
         }

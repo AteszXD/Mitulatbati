@@ -93,7 +93,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="HTMLManager\HTMLManager.cs" />
+    <Compile Include="HTMLManager\HTML.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SQLManager\SQL.cs" />
@@ -103,6 +103,7 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="gorgeto.js" />
     <Content Include="style.css" />
     <Content Include="Verseny.html" />
     <Content Include="verseny.sql" />
