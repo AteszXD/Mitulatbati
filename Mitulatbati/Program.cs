@@ -60,6 +60,7 @@ namespace Mitulatbati
                 Environment.Exit(0);
             }
 
+            versenyzok = new SQLManager().ReadUserDatabase();
             new HTMLManager().GenerateHTML(versenyzok);
         }
     }
