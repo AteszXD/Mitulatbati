@@ -1,10 +1,10 @@
-﻿using System;
+﻿using MySql.Data.MySqlClient;
+using System;
 using System.Collections.Generic;
+using System.Globalization; // Szóval hu-HU miatt vesszőt vár a decimal.Parse? Az baráti...
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using MySql.Data.MySqlClient;
-using System.Globalization; // Szóval hu-HU miatt vesszőt vár a decimal.Parse? Az baráti...
 
 namespace Mitulatbati.SQL
 {
@@ -69,6 +69,7 @@ namespace Mitulatbati.SQL
         /// </summary>
         public void InsertIntoDatabase()
         {
+            Console.Clear();
             Console.WriteLine("Kérem az adatokat: (Név, Első lengetés, Második lengetés, Harmadik lengetés)");
             string[] versenyzoUj = Console.ReadLine().Split(',');
             for (int i = 0; i < versenyzoUj.Length; i++)
@@ -88,6 +89,32 @@ namespace Mitulatbati.SQL
             connection.Close();
 
             string valasz = sorok > 0 ? "A versenyzőt sikeresen rögzítette" : "Hiba történt";
+            Console.WriteLine(valasz);
+        }
+
+        public void UpdateDatabase(int id)
+        {
+            Console.Clear();
+            Console.WriteLine("Kérem az adatokat: (Név, Első lengetés, Második lengetés, Harmadik lengetés)");
+            string[] versenyzoUj = Console.ReadLine().Split(',');
+            for (int i = 0; i < versenyzoUj.Length; i++)
+            {
+                versenyzoUj[i] = versenyzoUj[i].TrimStart(' ');
+            }
+
+            MySqlConnection connection = EstablishConnection();
+
+            string updateSQL = "UPDATE `versenyzok` SET Sorszam=@id,Nev=@nev,Elso_leng=@elso_leng,Masodik_leng=@masodik_leng,Harmadik_leng=@harmadik_leng WHERE Sorszam=@id";
+            MySqlCommand command = new MySqlCommand(updateSQL, connection);
+            command.Parameters.AddWithValue("@id", id);
+            command.Parameters.AddWithValue("@nev", versenyzoUj[0]);
+            command.Parameters.AddWithValue("@elso_leng", decimal.Parse(versenyzoUj[1], CultureInfo.InvariantCulture));
+            command.Parameters.AddWithValue("@masodik_leng", decimal.Parse(versenyzoUj[2], CultureInfo.InvariantCulture));
+            command.Parameters.AddWithValue("@harmadik_leng", decimal.Parse(versenyzoUj[3], CultureInfo.InvariantCulture));
+            int sorok = command.ExecuteNonQuery();
+            connection.Close();
+
+            string valasz = sorok > 0 ? "Sikeres módosítás" : "Hiba történt";
             Console.WriteLine(valasz);
         }
 
