@@ -48,6 +48,32 @@ CREATE TABLE IF NOT EXISTS `versenyzok` (
   PRIMARY KEY (`sorszam`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+DELIMITER //
+
+-- Before INSERT: clamp values
+CREATE TRIGGER clamp_leng_insert
+BEFORE INSERT ON versenyzok
+FOR EACH ROW
+BEGIN
+    SET NEW.elso_leng = GREATEST(0, LEAST(NEW.elso_leng, 10));
+    SET NEW.masodik_leng = GREATEST(0, LEAST(NEW.masodik_leng, 10));
+    SET NEW.harmadik_leng = GREATEST(0, LEAST(NEW.harmadik_leng, 10));
+END;
+//
+
+-- Before UPDATE: clamp values
+CREATE TRIGGER clamp_leng_update
+BEFORE UPDATE ON versenyzok
+FOR EACH ROW
+BEGIN
+    SET NEW.elso_leng = GREATEST(0, LEAST(NEW.elso_leng, 10));
+    SET NEW.masodik_leng = GREATEST(0, LEAST(NEW.masodik_leng, 10));
+    SET NEW.harmadik_leng = GREATEST(0, LEAST(NEW.harmadik_leng, 10));
+END;
+//
+
+DELIMITER ;
+
 --
 -- A tábla adatainak kiíratása `versenyzok`
 --
