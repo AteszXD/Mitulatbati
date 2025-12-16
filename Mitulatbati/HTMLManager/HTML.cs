@@ -15,7 +15,7 @@ namespace Mitulatbati.HTML
         /// <returns>A rendezett lista</returns>
         public List<SQLManager> OrderCompetitors(List<SQLManager> competitors)
         {
-            List<SQLManager> orderedCompetitors = competitors.OrderBy(competitor => competitor.Legjobb_leng).ThenBy(competitor => competitor.Name.ToLower()).ToList();
+            List<SQLManager> orderedCompetitors = competitors.OrderByDescending(competitor => Math.Ceiling(10 - competitor.Elso_leng) + Math.Ceiling(10 - competitor.Masodik_leng) + Math.Ceiling(10 - competitor.Harmadik_leng)).ThenBy(competitor => competitor.Legjobb_leng).ThenBy(competitor => competitor.Name.ToLower()).ToList();
             return orderedCompetitors;
         }
 
