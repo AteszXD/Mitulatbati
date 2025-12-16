@@ -87,6 +87,8 @@ namespace Mitulatbati.SQL
 
             string valasz = sorok > 0 ? "A versenyzőt sikeresen rögzítette" : "Hiba történt";
             Console.WriteLine(valasz);
+            Console.WriteLine("Enterre tovább...");
+            Console.ReadLine();
         }
 
         /// <summary>
@@ -117,6 +119,8 @@ namespace Mitulatbati.SQL
 
             string valasz = sorok > 0 ? "Sikeres módosítás" : "Hiba történt";
             Console.WriteLine(valasz);
+            Console.WriteLine("Enterre tovább...");
+            Console.ReadLine();
         }
 
         /// <summary>
@@ -135,6 +139,8 @@ namespace Mitulatbati.SQL
 
             string valasz = sorok > 0 ? "Sikeres törlés" : "Hiba történt";
             Console.WriteLine(valasz);
+            Console.WriteLine("Enterre tovább...");
+            Console.ReadLine();
         }
 
         /// <summary>
