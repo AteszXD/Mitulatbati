@@ -13,7 +13,7 @@ namespace Mitulatbati
     {
         static void Main(string[] _)
         {
-            Directory.SetCurrentDirectory(Path.GetFullPath(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"..\..\")));
+            Directory.SetCurrentDirectory(Path.GetFullPath(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"..\..\"))); // Ez azért van, hogy a html fájlt a .css és .js mellé mentse
             Console.Title = "Szélesbálási Fedettpályás Kalaplengető Verseny";
 
             Console.WriteLine("*** MENÜ ***");
@@ -51,9 +51,14 @@ namespace Mitulatbati
             }
             else if (input == 3)
             {
-                //Console.Write("Kérem adja meg a törlendő versenyző sorszámát: ");
-                //int id = int.Parse(Console.ReadLine());
-                //new SQLManager().DeleteFromDatabase(id);
+                Console.Clear();
+                foreach (SQLManager versenyzo in versenyzok)
+                {
+                    Console.WriteLine($"{versenyzo.Id}, {versenyzo.Name}");
+                }
+                Console.Write("Kérem adja meg a törlendő versenyző sorszámát: ");
+                int id = int.Parse(Console.ReadLine());
+                new SQLManager().DeleteFromDatabase(id);
             }
             else if (input == 4)
             {

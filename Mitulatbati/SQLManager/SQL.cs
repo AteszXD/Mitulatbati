@@ -92,6 +92,10 @@ namespace Mitulatbati.SQL
             Console.WriteLine(valasz);
         }
 
+        /// <summary>
+        /// A megadott sorszámú versenyző adatainak módosítása az adatbázisban
+        /// </summary>
+        /// <param name="id">A sorszám</param>
         public void UpdateDatabase(int id)
         {
             Console.Clear();
@@ -115,6 +119,20 @@ namespace Mitulatbati.SQL
             connection.Close();
 
             string valasz = sorok > 0 ? "Sikeres módosítás" : "Hiba történt";
+            Console.WriteLine(valasz);
+        }
+
+        public void DeleteFromDatabase(int id)
+        {
+            MySqlConnection connection = EstablishConnection();
+
+            string deleteSQL = "DELETE FROM `versenyzok` WHERE Sorszam=@id";
+            MySqlCommand command = new MySqlCommand(deleteSQL, connection);
+            command.Parameters.AddWithValue("@id", id);
+            int sorok = command.ExecuteNonQuery();
+            connection.Close();
+
+            string valasz = sorok > 0 ? "Sikeres törlés" : "Hiba történt";
             Console.WriteLine(valasz);
         }
 
