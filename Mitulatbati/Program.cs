@@ -3,9 +3,6 @@ using Mitulatbati.SQL;
 using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Mitulatbati
 {
@@ -66,6 +63,7 @@ namespace Mitulatbati
             }
 
             versenyzok = new SQLManager().ReadUserDatabase();
+            versenyzok = new HTMLManager().OrderCompetitors(versenyzok);
             new HTMLManager().GenerateHTML(versenyzok);
         }
     }

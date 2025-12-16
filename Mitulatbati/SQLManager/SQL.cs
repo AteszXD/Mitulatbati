@@ -2,9 +2,6 @@
 using System;
 using System.Collections.Generic;
 using System.Globalization; // Szóval hu-HU miatt vesszőt vár a decimal.Parse? Az baráti...
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Mitulatbati.SQL
 {
@@ -122,6 +119,10 @@ namespace Mitulatbati.SQL
             Console.WriteLine(valasz);
         }
 
+        /// <summary>
+        /// A megadott sorszámú versenyző törlése az adatbázisból
+        /// </summary>
+        /// <param name="id">A sorszám</param>
         public void DeleteFromDatabase(int id)
         {
             MySqlConnection connection = EstablishConnection();
