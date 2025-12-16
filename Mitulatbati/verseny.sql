@@ -32,12 +32,21 @@ USE `szelesbalas`;
 CREATE TABLE IF NOT EXISTS `versenyzok` (
   `sorszam` int(11) NOT NULL AUTO_INCREMENT,
   `nev` varchar(30) DEFAULT NULL,
-  `elso_leng` decimal(4,2) DEFAULT NULL,
-  `masodik_leng` decimal(4,2) DEFAULT NULL,
-  `harmadik_leng` decimal(4,2) DEFAULT NULL,
-  `legjobb_leng` decimal(4,2) GENERATED ALWAYS AS (least(`elso_leng`,`masodik_leng`,`harmadik_leng`)) STORED,
+
+  `elso_leng` decimal(4,2) DEFAULT NULL
+      CHECK (`elso_leng` BETWEEN 0 AND 10),
+
+  `masodik_leng` decimal(4,2) DEFAULT NULL
+      CHECK (`masodik_leng` BETWEEN 0 AND 10),
+
+  `harmadik_leng` decimal(4,2) DEFAULT NULL
+      CHECK (`harmadik_leng` BETWEEN 0 AND 10),
+
+  `legjobb_leng` decimal(4,2)
+      GENERATED ALWAYS AS (LEAST(`elso_leng`,`masodik_leng`,`harmadik_leng`)) STORED,
+
   PRIMARY KEY (`sorszam`)
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- A tábla adatainak kiíratása `versenyzok`
