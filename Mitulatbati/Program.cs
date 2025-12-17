@@ -51,24 +51,14 @@ namespace Mitulatbati
 
                     case 2:
                         Console.Clear();
-                        foreach (SQLManager versenyzo in versenyzok)
-                        {
-                            Console.WriteLine($"{versenyzo.Id}, {versenyzo.Name}");
-                        }
-                        Console.Write("Kérem adja meg a módosítandó versenyző sorszámát: ");
-                        int updateId = int.Parse(Console.ReadLine());
-                        new SQLManager().UpdateDatabase(updateId);
+                        int id = SelectVersenyzo(versenyzok);
+                        new SQLManager().UpdateDatabase(id);
                         break;
 
                     case 3:
                         Console.Clear();
-                        foreach (SQLManager versenyzo in versenyzok)
-                        {
-                            Console.WriteLine($"{versenyzo.Id}, {versenyzo.Name}");
-                        }
-                        Console.Write("Kérem adja meg a törlendő versenyző sorszámát: ");
-                        int deleteId = int.Parse(Console.ReadLine());
-                        new SQLManager().DeleteFromDatabase(deleteId);
+                        id = SelectVersenyzo(versenyzok);
+                        new SQLManager().DeleteFromDatabase(id);
                         break;
 
                     case 4:
@@ -91,9 +81,14 @@ namespace Mitulatbati
             }
         }
 
+        /// <summary>
+        /// Műveletkiválasztó menü megjelenítése
+        /// </summary>
+        /// <param name="selectedOption">A jelenleg kijelölt menüpont</param>
         static void DisplayMenu(int selectedOption)
         {
             Console.Clear();
+            Console.WriteLine("Válasszon menüpontot:\n");
             string[] menuItems = { "1. Eredményfelvétel", "2. Rekordmódosítás", "3. Eredménytörlés", "4. Kilépés" };
 
             for (int i = 0; i < menuItems.Length; i++)
@@ -109,6 +104,60 @@ namespace Mitulatbati
                 Console.WriteLine(menuItems[i]);
             }
             Console.ResetColor();
+        }
+
+        /// <summary>
+        /// Versenyző kiválasztása a listából, menü navigációval
+        /// </summary>
+        /// <param name="versenyzok">A versenyzőket tároló lista</param>
+        /// <returns>A kiválasztott versenyző sorszámát</returns>
+        static int SelectVersenyzo(List<SQLManager> versenyzok)
+        {
+            int currentPoint = 1;
+            bool selected = false;
+
+            do
+            {
+                Console.Clear();
+                Console.WriteLine("Válasszon versenyzőt:\n");
+
+                for (int i = 0; i < versenyzok.Count; i++)
+                {
+                    if (i + 1 == currentPoint)
+                    {
+                        Console.ForegroundColor = ConsoleColor.Green;
+                    }
+                    else
+                    {
+                        Console.ResetColor();
+                    }
+
+                    Console.WriteLine($"{versenyzok[i].Name} ({versenyzok[i].Legjobb_leng})");
+                }
+                Console.ResetColor();
+
+                switch (Console.ReadKey(true).Key)
+                {
+                    case ConsoleKey.Enter:
+                        selected = true;
+                        break;
+
+                    case ConsoleKey.UpArrow:
+                        if (currentPoint > 1)
+                            currentPoint--;
+                        break;
+
+                    case ConsoleKey.DownArrow:
+                        if (currentPoint < versenyzok.Count)
+                            currentPoint++;
+                        break;
+                }
+
+            } while (!selected);
+
+            Console.CursorVisible = true;
+
+            return versenyzok[currentPoint - 1].Id;
         }
     }
 }
