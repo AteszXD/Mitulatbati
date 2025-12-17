@@ -156,8 +156,6 @@ namespace Mitulatbati
 
             } while (!selected);
 
-            Console.CursorVisible = true;
-
             return versenyzok[currentPoint - 1].Id;
         }
     }
