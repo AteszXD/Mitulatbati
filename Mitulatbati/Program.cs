@@ -1,5 +1,6 @@
 ﻿using Mitulatbati.HTML;
 using Mitulatbati.SQL;
+using Mitulatbati.CenterHelper;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -64,7 +65,7 @@ namespace Mitulatbati
                     case 4:
                         Console.Clear();
                         Console.Beep();
-                        Console.Write("Biztosan kilép? (i/n): ");
+                        Helpers.WriteCentered("Biztosan kilép? (i/n): ");
                         if (Console.ReadKey().Key == ConsoleKey.I)
                         {
                             exit = true;
@@ -88,7 +89,7 @@ namespace Mitulatbati
         static void DisplayMenu(int selectedOption)
         {
             Console.Clear();
-            Console.WriteLine("Válasszon menüpontot:\n");
+            Helpers.WriteCentered("Válasszon menüpontot:\n");
             string[] menuItems = { "1. Eredményfelvétel", "2. Rekordmódosítás", "3. Eredménytörlés", "4. Kilépés" };
 
             for (int i = 0; i < menuItems.Length; i++)
@@ -101,7 +102,7 @@ namespace Mitulatbati
                 {
                     Console.ResetColor();
                 }
-                Console.WriteLine(menuItems[i]);
+                Helpers.WriteCentered(menuItems[i]);
             }
             Console.ResetColor();
         }
@@ -119,7 +120,7 @@ namespace Mitulatbati
             do
             {
                 Console.Clear();
-                Console.WriteLine("Válasszon versenyzőt:\n");
+                Helpers.WriteCentered("Válasszon versenyzőt:\n");
 
                 for (int i = 0; i < versenyzok.Count; i++)
                 {
@@ -132,7 +133,7 @@ namespace Mitulatbati
                         Console.ResetColor();
                     }
 
-                    Console.WriteLine($"{versenyzok[i].Name} ({versenyzok[i].Legjobb_leng})");
+                    Helpers.WriteCentered($"{versenyzok[i].Name} ({versenyzok[i].Legjobb_leng})");
                 }
                 Console.ResetColor();
 

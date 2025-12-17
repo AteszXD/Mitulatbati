@@ -1,4 +1,5 @@
 ﻿using MySql.Data.MySqlClient;
+using Mitulatbati.CenterHelper;
 using System;
 using System.Collections.Generic;
 using System.Globalization; // Szóval hu-HU miatt vesszőt vár a decimal.Parse? Az baráti...
@@ -67,8 +68,8 @@ namespace Mitulatbati.SQL
         public void InsertIntoDatabase()
         {
             Console.Clear();
-            Console.WriteLine("Kérem az adatokat: (Név, Első lengetés, Második lengetés, Harmadik lengetés)");
-            string[] versenyzoUj = Console.ReadLine().Split(',');
+            Helpers.WriteCentered("Kérem az adatokat: (Név, Első lengetés, Második lengetés, Harmadik lengetés)");
+            string[] versenyzoUj = Helpers.ReadCentered("").Split(',');
             for (int i = 0; i < versenyzoUj.Length; i++)
             {
                 versenyzoUj[i] = versenyzoUj[i].TrimStart(' ');
@@ -86,8 +87,8 @@ namespace Mitulatbati.SQL
             connection.Close();
 
             string valasz = sorok > 0 ? "A versenyzőt sikeresen rögzítette" : "Hiba történt";
-            Console.WriteLine(valasz);
-            Console.WriteLine("Enterre tovább...");
+            Helpers.WriteCentered(valasz);
+            Helpers.WriteCentered("Enterre tovább...");
             Console.ReadLine();
         }
 
@@ -98,8 +99,8 @@ namespace Mitulatbati.SQL
         public void UpdateDatabase(int id)
         {
             Console.Clear();
-            Console.WriteLine("Kérem az adatokat: (Név, Első lengetés, Második lengetés, Harmadik lengetés)");
-            string[] versenyzoUj = Console.ReadLine().Split(',');
+            Helpers.WriteCentered("Kérem az adatokat: (Név, Első lengetés, Második lengetés, Harmadik lengetés)");
+            string[] versenyzoUj = Helpers.ReadCentered("").Split(',');
             for (int i = 0; i < versenyzoUj.Length; i++)
             {
                 versenyzoUj[i] = versenyzoUj[i].TrimStart(' ');
@@ -118,8 +119,8 @@ namespace Mitulatbati.SQL
             connection.Close();
 
             string valasz = sorok > 0 ? "Sikeres módosítás" : "Hiba történt";
-            Console.WriteLine(valasz);
-            Console.WriteLine("Enterre tovább...");
+            Helpers.WriteCentered(valasz);
+            Helpers.WriteCentered("Enterre tovább...");
             Console.ReadLine();
         }
 
@@ -138,8 +139,8 @@ namespace Mitulatbati.SQL
             connection.Close();
 
             string valasz = sorok > 0 ? "Sikeres törlés" : "Hiba történt";
-            Console.WriteLine(valasz);
-            Console.WriteLine("Enterre tovább...");
+            Helpers.WriteCentered(valasz);
+            Helpers.WriteCentered("Enterre tovább...");
             Console.ReadLine();
         }
 
